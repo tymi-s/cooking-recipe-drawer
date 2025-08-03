@@ -1,0 +1,22 @@
+{%extends 'base.html' %}
+
+{% block head%}
+<h1><span class="gradient-text-1">MODYFIKACJA</span> <span class="gradient-text-3">PRZEPISU</span></h1>
+{% endblock%}
+
+{% block body %}
+<div class="container">
+    <form action="/update/{{ recipe.id }}" method="POST">
+        <h2>Edytuj przepis</h2>
+        <input type="text" name="name" value="{{ recipe.name }}" placeholder="Nazwa przepisu" required>
+        <input type="text" name="ingredients" value="{{ recipe.ingredients }}" placeholder="Składniki" required>
+        <input type="text" name="description" value="{{ recipe.description }}" placeholder="Opis przepisu">
+        <input type="number" name="rating" step="0.1" min="0" max="10" value="{{ recipe.rating }}" placeholder="Ocena (1-10)" required>
+        <input type="submit" value="Zaktualizuj przepis">
+    </form>
+
+    <div style="text-align: center; margin-top: 2rem;">
+        <a href="/" style="display: inline-block; padding: 0.8rem 2rem; background: linear-gradient(135deg, var(--sage), #7A8471); color: white; text-decoration: none; border-radius: 25px; font-weight: 600; transition: all 0.3s ease;">← Powrót do listy</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{%extends 'base.html' %}
+
+{% block head%}
+<h1><span class="gradient-text-1">LISTA</span> <span class="gradient-text-2">PRZEPISÓW</span></h1>
+{% endblock%}
+
+{% block body %}
+<div class="container">
+    <table>
+        <tr>
+            <th>Nazwa przepisu</th>
+            <th>Składniki</th>
+            <th>Opis</th>
+            <th>Ocena (1-10)</th>
+            <th>Opcje</th>
+        </tr>
+        {%for recipe in przepisy %}
+        <tr>
+            <td class="recipe-name">{{recipe.name}}</td>
+            <td>{{recipe.ingredients}}</td>
+            <td>{{recipe.description}}</td>
+            <td class="recipe-rating">{{recipe.rating}}</td>
+            <td>
+                <a href="/delete/{{recipe.id}}">Usuń</a>
+                <a href="/update/{{recipe.id}}">Edytuj</a>
+            </td>
+        </tr>
+        {%endfor%}
+    </table>
+
+    <form action="/" method="POST">
+        <h2>Dodaj nowy przepis</h2>
+        <input type="text" name="name" placeholder="Nazwa przepisu" required>
+        <input type="text" name="ingredients" placeholder="Składniki" required>
+        <input type="text" name="description" placeholder="Opis przepisu">
+        <input type="number" name="rating" step="0.1" min="0" max="10" placeholder="Ocena (1-10)" required>
+        <input type="submit" value="Dodaj przepis">
+    </form>
+</div>
+{% endblock %}
